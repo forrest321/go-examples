@@ -16,6 +16,8 @@ func main() {
 	mutexes()
 	separate("Concurrency")
 	concurrency()
+	separate("REST")
+	rest()
 }
 
 func separate(s string) {
