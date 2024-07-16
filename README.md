@@ -1,12 +1,10 @@
 # go-examples
 Examples of various Go constructs
 
-## to run
-clone repo
-
-cd into folder
-
-run code
+## To run
+clone repo  
+cd into folder  
+run code  
 ```shell
 git clone https://github.com/forrest321/go-examples.git
 cd go-examples
