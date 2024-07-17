@@ -1,3 +1,5 @@
+// This is a demo of common Go usage. It is not meant to show
+// how production code should be organized.
 package main
 
 import "fmt"
@@ -5,6 +7,7 @@ import "fmt"
 const separator string = "-=-=-=-=-=-=-=-=-=-=-=-"
 
 func main() {
+	//Why not start with a classic?
 	fmt.Println("Hello World")
 	separate("Basics")
 	basics()
@@ -12,7 +15,9 @@ func main() {
 	slices()
 	separate("Inheritance")
 	inheritance()
-	fmt.Println("Mutexes")
+	separate("Interfaces")
+	interfaces()
+	separate("Mutexes")
 	mutexes()
 	separate("Concurrency")
 	concurrency()
@@ -21,6 +26,7 @@ func main() {
 }
 
 func separate(s string) {
+	//Adding simple borders to output
 	fmt.Println(separator)
 	if len(s) > 0 {
 		fmt.Println(s)

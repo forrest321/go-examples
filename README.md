@@ -1,6 +1,8 @@
 # go-examples
 Examples of various Go constructs  
-**_This is for demo purposes only and not how a production project should be organized._**
+**_This is for demo purposes only and not how a production project should be organized._**  
+Basics of declaring variables, structs, 
+
 ## To run
 clone repo  
 cd into folder  
@@ -45,12 +47,10 @@ i=0,1,2,3,4,5,6,7,8,9
 Range
 It is easy to range over a string as a byte slice
 While loop
-random number = 4
+random number = 17
 random number = 9
-random number = 11
-random number = 11
 random number = 14
-random number = 0
+random number = 16
 random number = 5
 It matches!
 
@@ -61,23 +61,23 @@ ints slice: [1 2 3 4 5]
 len is: 5
 cap is: 5
 sorted: true
-shuffled slice: [2 5 4 3 1]
+shuffled slice: [2 5 1 4 3]
 sorted: false
 bubble sorted: [1 2 3 4 5]
 sorted: true
-shuffled slice: [2 1 5 4 3]
+shuffled slice: [1 4 5 2 3]
 sorted: false
 quick sorted: [1 2 3 4 5]
 sorted: true
 bigSlice len is: 15000
 bigSlice cap is: 15000
 new bigSlice sorted: false
-bubble sort of bigSlice took: 0.212011006 seconds
+bubble sort of bigSlice took: 0.213256469 seconds
 bigSlice sorted: true
 shuffled bigSlice sorted: false
-quick sort of bigSlice took: 0.00451466 seconds
+quick sort of bigSlice took: 0.004424522 seconds
 bigSlice sorted: true
-quick sort faster by 0.207496346 seconds
+quick sort faster by 0.208831947 seconds
 -=-=-=-=-=-=-=-=-=-=-=-
 Inheritance
 -=-=-=-=-=-=-=-=-=-=-=-
@@ -85,22 +85,32 @@ basic animal: {name:animal legs:0 fur:false feathers:false sound:}
 fido: {animal:{name:dog legs:4 fur:true feathers:false sound:bark} leash:yaaay lets go outside}
 felix: {animal:{name:cat legs:4 fur:true feathers:false sound:meow} leash:you will pay for this hairballs:true}
 eagle: {bird:{animal:{name:eagle legs:2 fur:false feathers:true sound:screech} wings:2} talons:sharp}
+-=-=-=-=-=-=-=-=-=-=-=-
 Mutexes
-created mutexThing: &{mu:{state:0 sema:0} unsafeMap:map[0:value 0 1:value 1] safeMap:{mu:{state:0 sema:0} read:{_:[] _:{} v:0xc0001180b0} dirty:map[0:0xc00011a050 1:0xc00011a058] misses:0}}
+-=-=-=-=-=-=-=-=-=-=-=-
+created mutexThing: &{mu:{state:0 sema:0} unsafeMap:map[0:value 0 1:value 1] safeMap:{mu:{state:0 sema:0} read:{_:[] _:{} v:0xc000016050} dirty:map[0:0xc00011a050 1:0xc00011a058] misses:0}}
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Concurrency
 -=-=-=-=-=-=-=-=-=-=-=-
+Channel #1 counted from 1251 to 2500 in 0.008074704 seconds
+Channel #6 counted from 7501 to 8750 in 0.00878178 seconds
+Channel #5 counted from 6251 to 7500 in 0.009834425 seconds
+Channel #2 counted from 2501 to 3750 in 0.013455482 seconds
+Channel #7 counted from 8751 to 10000 in 0.015092619 seconds
+Channel #8 counted from 10001 to 11250 in 0.01536675 seconds
+Channel #10 counted from 12501 to 13750 in 0.016154528 seconds
+Channel #0 counted from 1 to 1250 in 0.016422908 seconds
+Channel #11 counted from 13751 to 15000 in 0.016747667 seconds
+Channel #3 counted from 3751 to 5000 in 0.017348844 seconds
+Channel #9 counted from 11251 to 12500 in 0.01773115 seconds
+Channel #4 counted from 5001 to 6250 in 0.017988914 seconds
 
-Started: 2024-07-15 18:32:30.491471284 -0500 CDT m=+0.217702583 
-Ended: 2024-07-15 18:32:30.5048116 -0500 CDT m=+0.231042909 
-Duration: 13.340326ms
+Started: 2024-07-16 13:38:58.507672955 -0500 CDT m=+0.218573938 
+Ended: 2024-07-16 13:38:58.525688587 -0500 CDT m=+0.236589569 
+Duration: 18.015631ms
 Used 12 processors
 Counted to: 15000
-
-Started: 2024-07-15 18:32:30.491471284 -0500 CDT m=+0.217702583 
-Ended: 2024-07-15 18:32:30.504873505 -0500 CDT m=+0.231104804 
-Duration: 13.402221ms
 -=-=-=-=-=-=-=-=-=-=-=-
 REST
 -=-=-=-=-=-=-=-=-=-=-=-
@@ -147,7 +157,5 @@ Response received: 200 OK
 Getting data for id=6 This should get a 404
 Calling GET endpoint
 Status : 404 Not Found
-
-Process finished with the exit code 0
 
 ```

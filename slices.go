@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// small int slice to show basic handling
+// much of this is now included in std library
 var ints []int = []int{1, 2, 3, 4, 5}
 
 func slices() {
@@ -55,6 +57,8 @@ func makeBigSlice(n int) []int32 {
 	return s
 }
 
+// The following methods can/should be genericized rather than
+// creating separate methods based on int type
 func shuffle(arr []int) []int {
 	for i := len(arr) - 1; i > 0; i-- {
 		if j := rand.Intn(i + 1); i != j {

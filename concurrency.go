@@ -9,8 +9,10 @@ import (
 	"time"
 )
 
+// What should we count to? Try a million!
 var countTo = 15000
 
+// Keep channels in an object to easily pass as params
 type Chans struct {
 	countCh     chan int
 	doneCh      chan struct{}
@@ -22,9 +24,12 @@ func concurrency() {
 	// Get the number of currently available CPUs
 	numGoroutines := runtime.GOMAXPROCS(0)
 
+	// Useful for higher numbers. If you get tired of waiting
+	// to count to 1 billion, ctrl-c will end it
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, os.Interrupt)
 
+	// Lets see how long it takes
 	started := time.Now()
 
 	// Create a WaitGroup to wait for all goroutines to finish
@@ -83,14 +88,11 @@ func concurrency() {
 	}
 	fmt.Printf("Used %v processors\n", numGoroutines)
 	fmt.Printf("Counted to: %v\n", highestCount)
-	ended := time.Now()
-	duration := ended.Sub(started)
-	fmt.Printf("\nStarted: %v \nEnded: %v \nDuration: %v\n", started, ended, duration)
 }
 
 func count(start, end, chNum int, wg *sync.WaitGroup, chans Chans) {
 	defer wg.Done()
-
+	startTime := time.Now()
 	currentNumber := 0
 	for i := start; i <= end; i++ {
 		select {
@@ -102,5 +104,9 @@ func count(start, end, chNum int, wg *sync.WaitGroup, chans Chans) {
 			time.Sleep(1 * time.Microsecond)
 		}
 	}
+	endTime := time.Now()
+	duration := endTime.Sub(startTime)
+	fmt.Printf("Channel #%v counted from %v to %v in %v seconds\n", chNum, start, end, duration.Seconds())
 	chans.countCh <- currentNumber
+
 }

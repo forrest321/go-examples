@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+//Inheritance in Go is not like what you find in C#, C++, etc
+//Embedding structs allows inheriting properties
+
 type animal struct {
 	name     string
 	legs     int
@@ -26,15 +29,20 @@ type bird struct {
 	wings int
 }
 
+// This is a bird, which is an animal
 type birdOfPrey struct {
 	bird
 	talons string
 }
 
+var fido dog
+var felix cat
+var eagle birdOfPrey
+
 func inheritance() {
 	generic := animal{name: "animal", legs: 0, fur: false, feathers: false}
 	fmt.Printf("basic animal: %+v\n", generic)
-	fido := dog{
+	fido = dog{
 		animal: animal{
 			name:     "dog",
 			legs:     4,
@@ -45,7 +53,7 @@ func inheritance() {
 		leash: "yaaay lets go outside",
 	}
 	fmt.Printf("fido: %+v\n", fido)
-	felix := cat{
+	felix = cat{
 		animal: animal{
 			name:     "cat",
 			legs:     4,
@@ -57,7 +65,7 @@ func inheritance() {
 		hairballs: true,
 	}
 	fmt.Printf("felix: %+v\n", felix)
-	eagle := birdOfPrey{
+	eagle = birdOfPrey{
 		bird: bird{
 			animal: animal{
 				name:     "eagle",
