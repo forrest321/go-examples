@@ -6,17 +6,17 @@ concurrency and parallelism. Code found online is noted in source (sorting algor
 
 ## Basics
 Variable, constant, struct declarations, variable switching without intermediates, printing to console, 
-simple math, if / else, switch, for loop with counters, range, for (while) loop  
+simple math, if / else, switch, for loop with counters, range, for (while) loop.
 
 ## Concurrency
-Use of channels, go routines, waitgroups, select statements, parallelism
+Use of channels, go routines, waitgroups, select statements, parallelism.
 
 ## Inheritance
-Demonstrates Go's version of inheritance of properties from anonymous structs
+Demonstrates Go's version of inheritance of properties from anonymous structs.
 
 ## Interfaces
-Extends the inheritance examples through use of interfaces, which are implemented differently than the same from 
-other languages. Go's interfaces are implemented through what is sometimes called "duck" typing. "If it walks like 
+Extends the inheritance examples through use of interfaces, which are implemented differently than  
+other languages. Go's interfaces are implemented through what is sometimes called "duck typing". "If it walks like 
 a duck, talks like a duck, then it must be a duck." 
 
 ## Mutexes
@@ -42,7 +42,7 @@ cd go-examples
 ```
 Then run with Go  
 ```shell
-go run . //need to run the whole directory. go run main.go will not work
+go run . //need to run the whole directory. go run main.go will not work.
 ```
 or  
 Build and run  
