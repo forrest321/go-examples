@@ -1,7 +1,36 @@
 # go-examples
 Examples of various Go constructs  
 **_This is for demo purposes only and not how a production project should be organized._**  
-Basics of declaring variables, structs, 
+Basics of declaring variables, structs, slices, interfaces, mutexes, creating and consuming REST endpoints,
+concurrency and parallelism. Code found online is noted in source (sorting algorithms), all else was hand written.
+
+## Basics
+Variable, constant, struct declarations, variable switching without intermediates, printing to console, 
+simple math, if / else, switch, for loop with counters, range, for (while) loop  
+
+## Concurrency
+Use of channels, go routines, waitgroups, select statements, parallelism
+
+## Inheritance
+Demonstrates Go's version of inheritance of properties from anonymous structs
+
+## Interfaces
+Extends the inheritance examples through use of interfaces, which are implemented differently than the same from 
+other languages. Go's interfaces are implemented through what is sometimes called "duck" typing. "If it walks like 
+a duck, talks like a duck, then it must be a duck." 
+
+## Mutexes
+Basic demonstration of declaring and using mutexes and sync.Map.
+
+## REST
+Demonstrates creating a REST API with standard GET, POST, PUT, and DELETE endpoints using the standard libraries and the 
+new routing capabilities introduced in Go 1.22. Once the endpoints are created, they are consumed using Go's built in http 
+client functionality.
+
+## Slices
+Use of slices from sorting slices of integers to ranging over slices of strings. Generics used to reduce code by handling 
+any type of integers. Sorting algorithms taken from https://github.com/0xAX/go-algorithms/tree/master/sorting and adapted
+to generics. 
 
 ## To run
 clone repo  
@@ -30,7 +59,7 @@ Basics
 -=-=-=-=-=-=-=-=-=-=-=-
 package level variable
 I'm a constant
-{1 2 b Exported Not Exported}
+{x:1 y:2 name:b Exported:Exported notexported:Not Exported}
 e, f, g, h := 1, 2, 3, 4
 e, f, g, h = h, g, f, e
 4 3 2 1
@@ -48,9 +77,11 @@ Range
 It is easy to range over a string as a byte slice
 While loop
 random number = 17
-random number = 9
-random number = 14
-random number = 16
+random number = 17
+random number = 8
+random number = 8
+random number = 13
+random number = 2
 random number = 5
 It matches!
 
@@ -61,23 +92,27 @@ ints slice: [1 2 3 4 5]
 len is: 5
 cap is: 5
 sorted: true
-shuffled slice: [2 5 1 4 3]
-sorted: false
-bubble sorted: [1 2 3 4 5]
-sorted: true
-shuffled slice: [1 4 5 2 3]
-sorted: false
-quick sorted: [1 2 3 4 5]
-sorted: true
+Shuffling and sorting...
+Sorting complete
+gnome sort took 96 nanoseconds
+counting sort took 212 nanoseconds
+heap sort took 231 nanoseconds
+default sort took 411 nanoseconds
+bubble sort took 208 nanoseconds
+quick sort took 860 nanoseconds
+cocktail sort took 178 nanoseconds
 bigSlice len is: 15000
 bigSlice cap is: 15000
 new bigSlice sorted: false
-bubble sort of bigSlice took: 0.213256469 seconds
-bigSlice sorted: true
-shuffled bigSlice sorted: false
-quick sort of bigSlice took: 0.004424522 seconds
-bigSlice sorted: true
-quick sort faster by 0.208831947 seconds
+Shuffling and sorting...
+Sorting complete
+bubble sort took 222754 microseconds
+counting sort took 4247198 microseconds
+heap sort took 973 microseconds
+quick sort took 4561 microseconds
+default sort took 1149 microseconds
+gnome sort took 88042 microseconds
+cocktail sort took 91048 microseconds
 -=-=-=-=-=-=-=-=-=-=-=-
 Inheritance
 -=-=-=-=-=-=-=-=-=-=-=-
@@ -86,29 +121,47 @@ fido: {animal:{name:dog legs:4 fur:true feathers:false sound:bark} leash:yaaay l
 felix: {animal:{name:cat legs:4 fur:true feathers:false sound:meow} leash:you will pay for this hairballs:true}
 eagle: {bird:{animal:{name:eagle legs:2 fur:false feathers:true sound:screech} wings:2} talons:sharp}
 -=-=-=-=-=-=-=-=-=-=-=-
+Interfaces
+-=-=-=-=-=-=-=-=-=-=-=-
+bark
+yaaay lets go outside
+all goes well
+meow
+you will pay for this
+this was a bad idea
+screech
+-=-=-=-=-=-=-=-=-=-=-=-
 Mutexes
 -=-=-=-=-=-=-=-=-=-=-=-
-created mutexThing: &{mu:{state:0 sema:0} unsafeMap:map[0:value 0 1:value 1] safeMap:{mu:{state:0 sema:0} read:{_:[] _:{} v:0xc000016050} dirty:map[0:0xc00011a050 1:0xc00011a058] misses:0}}
+created mutexThing
+unsafe map before: map[0:value 0 1:value 1]
+safe map before:
+key: 0, value: value 0
+key: 1, value: value 1
+unsafe map after: map[0:safely changed values 1:value 1]
+safe map after:
+key: 0, value: changed values
+key: 1, value: this is fine
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Concurrency
 -=-=-=-=-=-=-=-=-=-=-=-
-Channel #1 counted from 1251 to 2500 in 0.008074704 seconds
-Channel #6 counted from 7501 to 8750 in 0.00878178 seconds
-Channel #5 counted from 6251 to 7500 in 0.009834425 seconds
-Channel #2 counted from 2501 to 3750 in 0.013455482 seconds
-Channel #7 counted from 8751 to 10000 in 0.015092619 seconds
-Channel #8 counted from 10001 to 11250 in 0.01536675 seconds
-Channel #10 counted from 12501 to 13750 in 0.016154528 seconds
-Channel #0 counted from 1 to 1250 in 0.016422908 seconds
-Channel #11 counted from 13751 to 15000 in 0.016747667 seconds
-Channel #3 counted from 3751 to 5000 in 0.017348844 seconds
-Channel #9 counted from 11251 to 12500 in 0.01773115 seconds
-Channel #4 counted from 5001 to 6250 in 0.017988914 seconds
+Channel #2 counted from 2501 to 3750 in 0.00954654 seconds
+Channel #7 counted from 8751 to 10000 in 0.010090777 seconds
+Channel #8 counted from 10001 to 11250 in 0.010619358 seconds
+Channel #10 counted from 12501 to 13750 in 0.011058665 seconds
+Channel #9 counted from 11251 to 12500 in 0.012215469 seconds
+Channel #5 counted from 6251 to 7500 in 0.012504371 seconds
+Channel #0 counted from 1 to 1250 in 0.012801832 seconds
+Channel #3 counted from 3751 to 5000 in 0.013412862 seconds
+Channel #1 counted from 1251 to 2500 in 0.013536852 seconds
+Channel #4 counted from 5001 to 6250 in 0.013555448 seconds
+Channel #6 counted from 7501 to 8750 in 0.014137903 seconds
+Channel #11 counted from 13751 to 15000 in 0.014242592 seconds
 
-Started: 2024-07-16 13:38:58.507672955 -0500 CDT m=+0.218573938 
-Ended: 2024-07-16 13:38:58.525688587 -0500 CDT m=+0.236589569 
-Duration: 18.015631ms
+Started: 2024-07-19 13:02:54.03581744 -0500 CDT m=+4.658083416 
+Ended: 2024-07-19 13:02:54.050116132 -0500 CDT m=+4.672382109 
+Duration: 14.298693ms
 Used 12 processors
 Counted to: 15000
 -=-=-=-=-=-=-=-=-=-=-=-
@@ -157,5 +210,8 @@ Response received: 200 OK
 Getting data for id=6 This should get a 404
 Calling GET endpoint
 Status : 404 Not Found
+
+Process finished with the exit code 0
+
 
 ```
