@@ -1,6 +1,6 @@
 # go-examples
-Examples of various Go constructs  
 **_This is for demo purposes only and not how a production project should be organized._**  
+Examples of various Go constructs  
 Basics of declaring variables, structs, slices, interfaces, mutexes, creating and consuming REST endpoints,
 concurrency and parallelism. Code found online is noted in source (sorting algorithms), all else was hand written.
 
